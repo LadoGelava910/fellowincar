@@ -19,7 +19,7 @@ function Filters() {
       <div className="row">
         <span>ვეძებ:</span>
         <select name="category" value={category} onChange={handleCategory}>
-          <option value="">აირჩიეთ</option>
+          <option value="">ყველა განცხადებას</option>
           {categories.map((category) => (
             <option value={"category=" + category._id} key={category._id}>
               {category.name}

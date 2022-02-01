@@ -31,7 +31,7 @@ function CreateProduct() {
   const [products] = state.productsAPI.products;
   const [onEdit, setOnEdit] = useState(false);
   const [callback, setCallback] = state.productsAPI.callback;
-
+  const [categoryState, setCategoryState] = useState("");
   useEffect(() => {
     if (param.id) {
       setOnEdit(true);
@@ -102,6 +102,11 @@ function CreateProduct() {
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
+    if (name === "category" && value === "61f3d9b908e72d203c44c95a") {
+      setCategoryState("61f3d9b908e72d203c44c95a");
+    } else if (name === "category" && value === "61f3d9c008e72d203c44c95f") {
+      setCategoryState("61f3d9c008e72d203c44c95f");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -218,13 +223,64 @@ function CreateProduct() {
         </div>
 
         <div className="row">
-          <label htmlFor="price">საწვავის ხარჯი</label>
+          {categoryState === "61f3d9b908e72d203c44c95a" ? (
+            <label htmlFor="price">
+              ბიუჯეტი(₾)
+              <span style={{ color: "grey" }}>
+                <i> - ეს ველი ნებაყოფლობითია</i>
+              </span>
+            </label>
+          ) : (
+            <label htmlFor="price">
+              საწვავის ხარჯი(₾){" "}
+              <span style={{ color: "grey" }}>
+                <i> - ეს ველი ნებაყოფლობითია</i>
+              </span>
+            </label>
+          )}
           <input
             type="number"
             name="price"
             id="price"
-            required
             value={product.price}
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        <div className="row">
+          {categoryState === "61f3d9b908e72d203c44c95a" ? (
+            <label htmlFor="price">მგზავრების რაოდენობა</label>
+          ) : (
+            <label htmlFor="price">
+              მანქანაში თავისუფალი ადგილების რაოდენობა
+            </label>
+          )}
+
+          <input
+            type="number"
+            name="quantity"
+            id="quantity"
+            required
+            defaultValue={product.quantity}
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        <div className="row">
+          {categoryState !== "61f3d9b908e72d203c44c95a" && (
+            <label htmlFor="price">
+              შემიძლია გავიარო:
+              <span style={{ color: "grey" }}>
+                <i> - ეს ველი ნებაყოფლობითია</i>
+              </span>
+            </label>
+          )}
+          <input
+            type="text"
+            name="middleLocations"
+            id="price"
+            defaultValue={product.middleLocations}
+            placeholder="მაგ: რუსთავი, გორი"
             onChange={handleChangeInput}
           />
         </div>
@@ -236,7 +292,7 @@ function CreateProduct() {
             name="description"
             id="description"
             required
-            value={product.description}
+            defaultValue={product.description}
             rows="5"
             onChange={handleChangeInput}
           />
@@ -249,13 +305,24 @@ function CreateProduct() {
             name="content"
             id="content"
             required
-            value={product.content}
+            placeholder="მაგ: 555 555 555"
             rows="7"
             onChange={handleChangeInput}
           />
         </div>
 
-        <button type="submit">{onEdit ? "Update" : "Create"}</button>
+        <button
+          style={{
+            background: "#EB7602",
+            color: "white",
+            borderRadius: "25px",
+            padding: "10px",
+            fontSize: "16px",
+          }}
+          type="submit"
+        >
+          {onEdit ? "Update" : "მზადაა"}
+        </button>
       </form>
     </div>
   );

@@ -21,7 +21,7 @@ function BtnRender({ product, deleteProduct }) {
                         Buy
                     </Link> */}
         <Link id="btn_view" to={`/detail/${product._id}`}>
-          ნახე
+          დეტალურად
         </Link>
       </>
     </div>

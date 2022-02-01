@@ -21,7 +21,7 @@ const productSchema = new mongoose.Schema(
     price: {
       type: Number,
       trim: true,
-      required: true,
+      // required: true,
     },
     description: {
       type: String,
@@ -45,7 +45,7 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     middleLocations: {
-      type: Array,
+      type: String,
     },
     images: {
       type: Object,
