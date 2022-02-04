@@ -47,6 +47,7 @@ const productSchema = new mongoose.Schema(
     middleLocations: {
       type: String,
     },
+    
     images: {
       type: Object,
       required: true,
